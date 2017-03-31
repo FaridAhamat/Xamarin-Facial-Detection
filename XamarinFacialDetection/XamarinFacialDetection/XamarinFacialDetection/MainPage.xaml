@@ -4,7 +4,7 @@
              x:Class="XamarinFacialDetection.MainPage"
              Title="MainPage">
   <StackLayout Padding="10" HorizontalOptions="Center" VerticalOptions="Center">
-    <Button Text="Register Face"/>
+    <Button Text="Register Face" Command="{Binding RegisterFaceCommand}"/>
     <Button Text="Detect Face"/>
   </StackLayout>
 </ContentPage>

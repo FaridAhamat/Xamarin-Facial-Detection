@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XamarinFacialDetection.FaceRegistrationPage"
+             Title="FaceRegistrationPage">
+  <ContentPage.Padding>5</ContentPage.Padding>
+  <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="2*"/>
+      <ColumnDefinition Width="3*"/>
+      <ColumnDefinition Width="2*"/>
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="*"/>
+      <RowDefinition Height="*"/>
+      <RowDefinition Height="8*"/>
+    </Grid.RowDefinitions>
+    <Picker Title="Face Tag"
+            SelectedIndex="{Binding TagsIndex}">
+      <Picker.Items>
+        <x:String>Unknown</x:String>
+        <x:String>Friends</x:String>
+        <x:String>Enemies</x:String>
+      </Picker.Items>
+    </Picker>
+    <Entry Text="{Binding Name}"
+           Grid.Column="1"/>
+    <Button Grid.Column="2"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            Command="{Binding TakePhotoCommand}"
+            Text="Take Photo"/>
+    <Label Grid.Row="1" Grid.ColumnSpan="3" 
+           HorizontalOptions="Center" 
+           Text="Last Photo"/>
+  </Grid>
+</ContentPage>

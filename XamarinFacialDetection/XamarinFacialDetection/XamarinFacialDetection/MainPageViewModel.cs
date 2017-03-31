@@ -7,7 +7,7 @@ using Xamarin.Forms;
 
 namespace XamarinFacialDetection
 {
-    class MainPageViewModel : INotifyPropertyChanged
+    public class MainPageViewModel : INotifyPropertyChanged
     {
 
         public MainPageViewModel()
@@ -25,9 +25,13 @@ namespace XamarinFacialDetection
 
         private void RegisterFace()
         {
-            // Go to face registration page
-            //MessagingCenter.Send(this, "RegisterFaceAlert", "Go to register page");
-            throw new NotImplementedException();
+            Navigation.PushAsync(new FaceRegistrationPage());
+        }
+
+        public INavigation Navigation
+        {
+            get;
+            set;
         }
 
         public ICommand RegisterFaceCommand { get; }

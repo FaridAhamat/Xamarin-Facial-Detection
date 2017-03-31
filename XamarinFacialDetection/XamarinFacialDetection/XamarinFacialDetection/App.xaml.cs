@@ -13,7 +13,7 @@ namespace XamarinFacialDetection
         {
             InitializeComponent();
 
-            MainPage = new XamarinFacialDetection.MainPage();
+            MainPage = new NavigationPage(new MainPage(new MainPageViewModel()));
         }
 
         protected override void OnStart()

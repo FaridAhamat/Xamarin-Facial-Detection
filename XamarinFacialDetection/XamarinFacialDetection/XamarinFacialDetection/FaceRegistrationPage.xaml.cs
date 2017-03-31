@@ -9,19 +9,13 @@ using Xamarin.Forms.Xaml;
 
 namespace XamarinFacialDetection
 {
-
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MainPage : ContentPage
+    public partial class FaceRegistrationPage : ContentPage
     {
-        public MainPage()
+        public FaceRegistrationPage()
         {
             InitializeComponent();
-        }
-
-        public MainPage(MainPageViewModel vm) : this()
-        {
-            vm.Navigation = Navigation;
-            BindingContext = vm;
+            BindingContext = new FaceRegistrationPageViewModel();
         }
     }
 }
