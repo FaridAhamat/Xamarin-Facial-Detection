@@ -14,5 +14,7 @@ namespace XamarinFacialDetection
             "Friends",
             "Enemies"
         };
+
+        public static Dictionary<Guid, string> NameGuidDict = new Dictionary<Guid, string>();
     }
 }

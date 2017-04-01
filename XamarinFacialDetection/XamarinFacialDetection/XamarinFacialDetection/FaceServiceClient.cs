@@ -1,4 +1,5 @@
 ﻿using Microsoft.ProjectOxford.Face;
+using Microsoft.ProjectOxford.Face.Contract;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -25,10 +26,53 @@ namespace XamarinFacialDetection
             await client?.CreatePersonGroupAsync(groupId, "Name: " + groupId);
         }
 
-        public void RegisterPersonAsync(string groupId, string name, Stream imgStream)
+        public async Task RegisterPersonAsync(string groupId, string name, Stream imgStream)
         {
-            client?.CreatePersonAsync(groupId, name);
-            //client?.AddPersonFaceAsync(groupId, name, imgStream);
+            var person = await client?.CreatePersonAsync(groupId, name);
+
+            Helper.NameGuidDict.Add(person.PersonId, name);
+
+            await client?.AddPersonFaceAsync(groupId, person.PersonId, imgStream);
+        }
+
+        public async Task TrainGroupAsync(string groupId)
+        {
+            await client?.TrainPersonGroupAsync(groupId);
+
+            TrainingStatus status = null;
+
+            while (true)
+            {
+                status = await client?.GetPersonGroupTrainingStatusAsync(groupId);
+
+                if (status.Status != Status.Running)
+                {
+                    break;
+                }
+            }
+        }
+
+        public async Task<List<string>> DetectFaceAsync(Stream imgStream)
+        {
+            var faces = await client?.DetectAsync(imgStream);
+
+            var faceIds = faces.Select(face => face.FaceId).ToArray();
+
+            List<string> personNameList = new List<string>();
+
+            foreach (Guid faceId in faceIds)
+            {
+                string name = "";
+
+                Helper.NameGuidDict.TryGetValue(faceId, out name);
+
+                if (!string.IsNullOrEmpty(name))
+                {
+                    personNameList.Add(name);
+                }
+            }
+
+            return personNameList;
         }
     }
 }
