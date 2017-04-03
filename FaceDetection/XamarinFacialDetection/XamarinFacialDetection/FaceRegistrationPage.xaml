@@ -5,18 +5,16 @@
              Title="FaceRegistrationPage">
   <ContentPage.Padding>5</ContentPage.Padding>
   <Grid>
-    <Grid.ColumnDefinitions>
-      <ColumnDefinition Width="2*"/>
-      <ColumnDefinition Width="3*"/>
-      <ColumnDefinition Width="2*"/>
-    </Grid.ColumnDefinitions>
     <Grid.RowDefinitions>
       <RowDefinition Height="*"/>
       <RowDefinition Height="*"/>
-      <RowDefinition Height="8*"/>
+      <RowDefinition Height="*"/>
+      <RowDefinition Height="6*"/>
+      <RowDefinition Height="*"/>
     </Grid.RowDefinitions>
     <Picker Title="Face Tag"
-            SelectedIndex="{Binding TagsIndex}">
+            SelectedIndex="{Binding TagsIndex}"
+            HorizontalOptions="Center">
       <Picker.Items>
         <x:String>Unknown</x:String>
         <x:String>Friends</x:String>
@@ -24,14 +22,16 @@
       </Picker.Items>
     </Picker>
     <Entry Text="{Binding Name}"
-           Grid.Column="1"/>
-    <Button Grid.Column="2"
-            HorizontalOptions="Center"
-            VerticalOptions="Center"
+           Placeholder="Enter Name"
+           HorizontalOptions="Center"
+           Grid.Row="1"/>
+    <Button HorizontalOptions="Center"
             Command="{Binding TakePhotoCommand}"
-            Text="Take Photo"/>
-    <Label Grid.Row="1" Grid.ColumnSpan="3" 
-           HorizontalOptions="Center" 
-           Text="Last Photo"/>
+            Text="Take Photo"
+            Grid.Row="2"/>
+    <Button HorizontalOptions="Center"
+            Command="{Binding TrainPhotoCommand}"
+            Text="Train Photo"
+            Grid.Row="4"/>
   </Grid>
 </ContentPage>

@@ -15,6 +15,12 @@ namespace XamarinFacialDetection
         public FaceRegistrationPageViewModel()
         {
             TakePhotoCommand = new Command(TakePhotoAsync);
+            TrainPhotoCommand = new Command(TrainPhotoAsync);
+        }
+
+        private void TrainPhotoAsync(object obj)
+        {
+            throw new NotImplementedException();
         }
 
         int tagIndex;
@@ -38,6 +44,11 @@ namespace XamarinFacialDetection
         }
 
         public ICommand TakePhotoCommand
+        {
+            get;
+        }
+
+        public ICommand TrainPhotoCommand
         {
             get;
         }

@@ -62,9 +62,7 @@ namespace XamarinFacialDetection
 
             foreach (Guid faceId in faceIds)
             {
-                string name = "";
-
-                Helper.NameGuidDict.TryGetValue(faceId, out name);
+                Helper.NameGuidDict.TryGetValue(faceId, out string name);
 
                 if (!string.IsNullOrEmpty(name))
                 {
